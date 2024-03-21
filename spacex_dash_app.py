@@ -54,7 +54,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
 
                                 # TASK 4: Add a scatter chart to show the correlation between payload and launch success
                                 html.Div(dcc.Graph(id='success-payload-scatter-chart',
-                                                    figure=px.scatter(spacex_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+                                                    figure=px.scatter(spacex_df, x='Payload Mass (kg)', y='class', color='Booster Version Category', size='Payload Mass (kg)')
                                                    )),
                                 ])
 
@@ -70,7 +70,7 @@ def update_pie_chart(selected_site):
         return fig
     else:
         filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
-        fig = px.pie(filtered_df, names='class', title='Total Success Launches for site {}'.format(selected_site))
+        fig = px.pie(filtered_df, names='class', title='Launch-Succes ratio for {} site'.format(selected_site))
         return fig
 
 # TASK 4:
@@ -87,13 +87,13 @@ def update_scatter_chart(selected_site, payload_range):
         # Filter the data based on the payload range
         filtered_df = spacex_df[(spacex_df['Payload Mass (kg)'] >= payload_range[0]) & (spacex_df['Payload Mass (kg)'] <= payload_range[1])]
         # Create the scatter plot
-        fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+        fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category',size='Payload Mass (kg)')
         return fig
     else:
         # Filter the data based on the site and payload range
         filtered_df = spacex_df[(spacex_df['Launch Site'] == selected_site) & (spacex_df['Payload Mass (kg)'] >= payload_range[0]) & (spacex_df['Payload Mass (kg)'] <= payload_range[1])]
         # Create the scatter plot
-        fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+        fig = px.scatter(filtered_df, x='Payload Mass (kg)', y='class', color='Booster Version Category',size='Payload Mass (kg)')
         return fig
 
 # Run the app
