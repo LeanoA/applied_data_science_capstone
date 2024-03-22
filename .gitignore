@@ -3,3 +3,7 @@
 
 # Mac OS
 .DS_Store
+
+# Microsoft Office temporary files
+~$*
+
